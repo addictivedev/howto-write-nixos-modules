@@ -10,7 +10,7 @@ lib.evalModules {
             type = lib.types.attrsOf lib.types.int;
           };
           strings = lib.mkOption {
-            type = lib.types.attrsOf lib.types.string;
+            type = lib.types.attrsOf lib.types.str;
             default = {
               x = "foo";
             };
