@@ -20,6 +20,6 @@ pkgs.nixosTest {
     machine.wait_for_unit("myService.service")
 
     # we grep the log message "foo" that we expect
-    machine.succeed("journalctl -u teleport.myService --grep='foo'")
+    machine.succeed("journalctl -u myService.service --grep='foo'")
   '';
 }

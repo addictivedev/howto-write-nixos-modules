@@ -1,8 +1,8 @@
 { lib, config, ... }: 
 let
-  cfg = options.services.myService;
+  cfg = config.services.myService;
 in {
-  options.services.myServices = {
+  options.services.myService = {
     enable = lib.mkEnableOption "myService";
   };
 
