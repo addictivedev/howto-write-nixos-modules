@@ -11,7 +11,7 @@ in {
       wantedBy = [ "multi-user.target" ];
       script = ''
         while true; do
-          echo foo
+          echo fooo
         done
       '';
     };
