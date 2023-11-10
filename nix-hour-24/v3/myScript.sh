@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-password $1
+passwordFile=$1
 while true; do
-    echo "$password"
+    cat "$passwordFile"
 done

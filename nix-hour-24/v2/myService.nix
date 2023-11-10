@@ -1,4 +1,4 @@
-{ lib, config, ... }: 
+{ lib, config, pkgs, ... }: 
 let
   cfg = config.services.myService;
 in {
@@ -13,6 +13,7 @@ in {
   config = lib.mkIf cfg.enable {
     systemd.services.myService = {
       wantedBy = [ "multi-user.target" ];
+      path = [ pkgs.bash ];
       serviceConfig.ExecStart = "${./myScript.sh} ${cfg.password}";
     };
   };

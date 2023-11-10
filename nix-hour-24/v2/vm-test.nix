@@ -8,7 +8,7 @@ pkgs.nixosTest {
       ];
 
       services.myService.enable = true;
-      services.myService.enable = "ThisIsMyPassword"
+      services.myService.password = "ThisIsMyPassword";
     };
   };
 
