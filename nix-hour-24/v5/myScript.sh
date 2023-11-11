@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 passwordFile=$1
 while true; do
-    echo "The secret is: " $(cat "$passwordFile")
+    secret=$(cat "$passwordFile") || exit 1;
+    echo "The secret is: $secret"
 done

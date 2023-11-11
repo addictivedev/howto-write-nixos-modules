@@ -15,6 +15,7 @@ in {
       wantedBy = [ "multi-user.target" ];
       path = [ pkgs.bash ];
       serviceConfig.ExecStart = "${./myScript.sh} ${cfg.passwordFile}";
+      serviceConfig.DynamicUser = true;
     };
   };
 }
