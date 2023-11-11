@@ -2,5 +2,5 @@
 
 passwordFile=$1
 while true; do
-    cat "$passwordFile"
+    echo "The secret is: " $(cat "$passwordFile")
 done

@@ -8,7 +8,15 @@ pkgs.nixosTest {
       ];
 
       services.myService.enable = true;
-      services.myService.passwordFile = pkgs.writeText "myPassword" "ThisIsMyPassword";
+      services.myService.passwordFile = "/root/mySecretKey";
+
+      systemd.services.mySecretGenerator = {
+        wantedBy = [ "multi-user.target" ];
+        before = [ "myService.service" ];
+        script = ''
+          ${pkgs.pwgen}/bin/pwgen 20 1 > /root/mySecretKey 
+        '';
+      };
     };
   };
 
@@ -20,7 +28,7 @@ pkgs.nixosTest {
     # wait for the systemd unit on the node "machine"
     machine.wait_for_unit("myService.service")
 
-    # we grep the log message "foo" that we expect
-    machine.succeed("journalctl -u myService.service --grep='ThisIsMyPassword'")
+    # we grep the log message that we expect
+    machine.succeed("journalctl -u myService.service --grep='The secret is:'")
   '';
 }
