@@ -14,8 +14,11 @@ in {
     systemd.services.myService = {
       wantedBy = [ "multi-user.target" ];
       path = [ pkgs.bash ];
-      serviceConfig.ExecStart = "${./myScript.sh} ${cfg.passwordFile}";
+      script = ''
+        ${./myScript.sh} "$CREDENTIALS_DIRECTORY/password";
+      '';
       serviceConfig.DynamicUser = true;
+      serviceConfig.LoadCredential = [ "password:${cfg.passwordFile}" ];
     };
   };
 }
