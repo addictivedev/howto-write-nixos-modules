@@ -3,6 +3,13 @@
     type = lib.types.attrsOf lib.types.package;
     default = {};
   };
+  
+  #add packages "default"
+  config.slashBinPackages = {
+    inherit (pkgs)
+      hello
+      ;
+  };
 
   config.system.activationScripts.slashBin = ''
     mkdir -p /bin
