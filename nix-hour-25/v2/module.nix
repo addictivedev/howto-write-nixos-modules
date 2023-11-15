@@ -4,6 +4,14 @@
     default = {};
   };
 
+  #add packages
+  config.slashBinPackages = {
+    inherit (pkgs)
+      gcc
+      gcc10
+    ;
+  };
+
   config.system.activationScripts.slashBin = ''
     mkdir -p /bin
     ${lib.concatStrings (lib.mapAttrsToList (name: package: ''

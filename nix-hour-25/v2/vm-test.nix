@@ -4,16 +4,8 @@ pkgs.nixosTest {
   nodes = {
     machine = {
       imports = [
-        ./configuration.nix
+        ./module.nix
       ];
-
-      #add packages
-      config.slashBinPackages = {
-        inherit (pkgs)
-          gcc
-	  gcc10
-          ;
-      };
     };
   };
 
