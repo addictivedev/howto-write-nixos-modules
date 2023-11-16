@@ -12,6 +12,9 @@
     initialPassword = "test";
   };
 
+  # Enable ssh
+  services.sshd.enable = true; 
+
   system.stateVersion = "23.05";
 
   # Set your time zone.
