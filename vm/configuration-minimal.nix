@@ -3,6 +3,11 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+   #By default VMs will have a NIX_PATH configured for nix channels but no channel are downloaded yet. To avoid having to download a nix-channel every time the VM is reset, you can use the following nixos configuration
+  #nix.nixPath = [
+  #  "nixpkgs=${pkgs.path}"
+  #];
+
   users.users.test = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable 'sudo' for the user.
@@ -10,6 +15,15 @@
       tree
     ];
     initialPassword = "test";
+  };
+
+
+  # Options for the screen
+  virtualisation.vmVariant = {
+    virtualisation.qemu.options = [
+      # Memory
+      "-m 2048M"
+    ];
   };
 
   # Enable ssh
