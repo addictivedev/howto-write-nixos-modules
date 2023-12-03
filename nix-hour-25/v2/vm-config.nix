@@ -6,6 +6,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Enable the OpenSSH daemon.
+  services.openssh = {
+    enable = true;
+    passwordAuthentication = true;
+  };
+
   users.users.test = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable 'sudo' for the user.
