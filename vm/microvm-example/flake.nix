@@ -76,6 +76,14 @@
                   id = "vm-a1";
                   mac = "02:00:00:00:00:01";
                 } ];
+                forwardPorts = [ # forward local port 2222 -> 22, to ssh into the VM
+		                 { from = "host"; host.port = 2222; guest.port = 22; }
+                                 # forward local port 80 -> 10.0.2.10:80 in the VLAN
+                                 #{ from = "guest";
+                                 #  guest.address = "10.0.2.10"; guest.port = 80;
+                                 #  host.address = "127.0.0.1"; host.port = 80;
+                                 #}
+                               ];
                 volumes = [ {
                   mountPoint = "/var";
                   image = "var.img";
@@ -90,7 +98,7 @@
                   source = "/nix/store";
                   mountPoint = "/nix/.ro-store";
                 } ];
-
+                
                 hypervisor = "qemu";
                 socket = "name.socket";
               };
